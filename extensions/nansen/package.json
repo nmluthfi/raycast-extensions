@@ -63,9 +63,7 @@
   ],
   "dependencies": {
     "@raycast/api": "^1.93.0",
-    "@raycast/utils": "^1.17.0",
-    "execa": "^7.2.0",
-    "node-fetch": "^3.3.2"
+    "execa": "^7.2.0"
   },
   "devDependencies": {
     "@raycast/eslint-config": "^1.0.11",

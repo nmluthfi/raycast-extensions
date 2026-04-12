@@ -103,7 +103,7 @@ export class ScanInsidersUseCase {
         const name = w.polymarketUsername ? ` (@${w.polymarketUsername})` : "";
         return `${i + 1}. ${w.address}${name} (Score: ${w.score}, PnL: $${w.totalPnlUsd.toLocaleString()})`;
       })
-      .join("\\n");
+      .join("\n");
 
     return {
       marketName,

@@ -10,7 +10,7 @@ export interface IHttpClient {
 }
 
 export interface ICliClient {
-  execute<T>(command: string, timeoutMs?: number): Promise<T>;
+  execute<T>(command: string[], timeoutMs?: number): Promise<T>;
 }
 
 // Data models previously trapped inside API wrappers

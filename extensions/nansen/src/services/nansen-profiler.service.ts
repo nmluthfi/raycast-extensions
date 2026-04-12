@@ -22,7 +22,22 @@ export class NansenProfilerService implements INansenProfilerService {
     days = 365,
   ): Promise<HistoricalBalance[]> {
     await delay(CALL_SPACING_MS);
-    const cmd = `nansen research profiler historical-balances --address ${address} --chain polygon --days ${days} --sort block_timestamp:asc --limit 100`;
+    const cmd = [
+      "nansen",
+      "research",
+      "profiler",
+      "historical-balances",
+      "--address",
+      address,
+      "--chain",
+      "polygon",
+      "--days",
+      String(days),
+      "--sort",
+      "block_timestamp:asc",
+      "--limit",
+      "100",
+    ];
     const result =
       await this.cliClient.execute<PaginatedResponse<HistoricalBalance>>(cmd);
     return result.data || [];
@@ -30,7 +45,16 @@ export class NansenProfilerService implements INansenProfilerService {
 
   public async getWalletLabels(address: string): Promise<NansenLabel[]> {
     await delay(CALL_SPACING_MS);
-    const cmd = `nansen research profiler labels --address ${address} --chain polygon`;
+    const cmd = [
+      "nansen",
+      "research",
+      "profiler",
+      "labels",
+      "--address",
+      address,
+      "--chain",
+      "polygon",
+    ];
     const result =
       await this.cliClient.execute<PaginatedResponse<NansenLabel>>(cmd);
     return result.data || [];
@@ -40,7 +64,16 @@ export class NansenProfilerService implements INansenProfilerService {
     address: string,
   ): Promise<NansenRelatedWallet[]> {
     await delay(CALL_SPACING_MS);
-    const cmd = `nansen research profiler related-wallets --address ${address} --chain polygon`;
+    const cmd = [
+      "nansen",
+      "research",
+      "profiler",
+      "related-wallets",
+      "--address",
+      address,
+      "--chain",
+      "polygon",
+    ];
     const result =
       await this.cliClient.execute<PaginatedResponse<NansenRelatedWallet>>(cmd);
     return result.data || [];
@@ -51,7 +84,18 @@ export class NansenProfilerService implements INansenProfilerService {
     days = 90,
   ): Promise<NansenCounterparty[]> {
     await delay(CALL_SPACING_MS);
-    const cmd = `nansen research profiler counterparties --address ${address} --chain polygon --days ${days}`;
+    const cmd = [
+      "nansen",
+      "research",
+      "profiler",
+      "counterparties",
+      "--address",
+      address,
+      "--chain",
+      "polygon",
+      "--days",
+      String(days),
+    ];
     const result =
       await this.cliClient.execute<PaginatedResponse<NansenCounterparty>>(cmd);
     return result.data || [];

@@ -30,10 +30,9 @@ export default async function tool(input: Input) {
     if (identifyInput(address) === "username") {
       const resolved = await polySvc.resolveUsername(address);
       if (!resolved) {
-        return {
-          success: false as const,
-          error: `Could not find a Polymarket user with the username "${address}".`,
-        };
+        throw new Error(
+          `Could not find a Polymarket user with the username "${address}".`,
+        );
       }
       address = resolved;
     }

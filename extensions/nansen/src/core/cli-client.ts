@@ -1,37 +1,30 @@
 import { getPreferenceValues } from "@raycast/api";
-import { execaCommand } from "execa";
+import { execa } from "execa";
 import { ICliClient } from "./interfaces";
-
-interface NansenPreferences {
-  nansenApiKey: string;
-}
 
 export class CliClient implements ICliClient {
   public async execute<T>(
-    command: string,
+    command: string[],
     timeoutMs: number = 60_000,
   ): Promise<T> {
-    const prefs = getPreferenceValues<NansenPreferences>();
+    const prefs = getPreferenceValues<Preferences>();
     if (!prefs.nansenApiKey) {
       throw new Error(
         "Missing Nansen API Key. Go to Raycast extension settings (Cmd + ,) and add your key.",
       );
     }
 
-    const home = process.env.HOME || "";
-    const nvmNodeBin = `${home}/.nvm/versions/node/v24.14.1/bin`;
     const env: Record<string, string> = {
       ...process.env,
-      PATH: `${nvmNodeBin}:${process.env.PATH}:/usr/local/bin:/opt/homebrew/bin`,
+      PATH: `${process.env.PATH}:/usr/local/bin:/opt/homebrew/bin`,
       NANSEN_API_KEY: prefs.nansenApiKey,
     };
 
     let stdout: string;
     try {
-      const result = await execaCommand(command, {
+      const result = await execa(command[0], command.slice(1), {
         env,
         timeout: timeoutMs,
-        shell: true,
       });
       stdout = result.stdout;
     } catch (execErr: any) {

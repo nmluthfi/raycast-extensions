@@ -21,7 +21,18 @@ export class NansenMarketService implements INansenMarketService {
     options: { status?: string; limit?: number } = {},
   ): Promise<NansenMarketEntry[]> {
     const { status = "closed", limit = 5 } = options;
-    const cmd = `nansen research prediction-market market-screener --query "${query}" --status ${status} --limit ${limit}`;
+    const cmd = [
+      "nansen",
+      "research",
+      "prediction-market",
+      "market-screener",
+      "--query",
+      query,
+      "--status",
+      status,
+      "--limit",
+      String(limit),
+    ];
     const result =
       await this.cliClient.execute<PaginatedResponse<NansenMarketEntry>>(cmd);
     return result.data || [];
@@ -31,7 +42,16 @@ export class NansenMarketService implements INansenMarketService {
     marketId: string,
     limit = 50,
   ): Promise<PnlByMarketEntry[]> {
-    const cmd = `nansen research prediction-market pnl-by-market --market-id ${marketId} --limit ${limit}`;
+    const cmd = [
+      "nansen",
+      "research",
+      "prediction-market",
+      "pnl-by-market",
+      "--market-id",
+      marketId,
+      "--limit",
+      String(limit),
+    ];
     const result =
       await this.cliClient.execute<PaginatedResponse<PnlByMarketEntry>>(cmd);
     return result.data || [];
@@ -42,7 +62,16 @@ export class NansenMarketService implements INansenMarketService {
     limit = 100,
   ): Promise<NansenTrade[]> {
     await delay(CALL_SPACING_MS);
-    const cmd = `nansen research prediction-market trades-by-address --address ${address} --limit ${limit}`;
+    const cmd = [
+      "nansen",
+      "research",
+      "prediction-market",
+      "trades-by-address",
+      "--address",
+      address,
+      "--limit",
+      String(limit),
+    ];
     const result =
       await this.cliClient.execute<PaginatedResponse<NansenTrade>>(cmd);
     return result.data || [];

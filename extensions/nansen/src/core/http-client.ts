@@ -1,4 +1,3 @@
-import fetch from "node-fetch";
 import { IHttpClient } from "./interfaces";
 
 export class HttpClient implements IHttpClient {
