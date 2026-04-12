@@ -1,0 +1,86 @@
+{
+  "$schema": "https://www.raycast.com/schemas/extension.json",
+  "name": "nansen",
+  "title": "Nansen",
+  "description": "Prediction market intelligence powered by Nansen's onchain analytics. Discover insiders, reveal wallet clusters, and investigate cross-market behavior on Polymarket.",
+  "icon": "nansen.png",
+  "author": "luthfi",
+  "categories": [
+    "Finance",
+    "Data"
+  ],
+  "license": "MIT",
+  "preferences": [
+    {
+      "name": "nansenApiKey",
+      "title": "Nansen API Key",
+      "description": "Your Nansen API key for authenticating CLI calls. Get one at https://app.nansen.ai/auth/agent-setup. Stored securely by Raycast's preferences system and only used in-memory as an environment variable.",
+      "type": "password",
+      "required": true
+    }
+  ],
+  "commands": [
+    {
+      "name": "index",
+      "icon": "nansen.png",
+      "title": "Guide",
+      "subtitle": "Read me to use Nansen",
+      "description": "Prediction market intelligence powered by Nansen's onchain analytics. Discover insiders, reveal wallet clusters, and investigate cross-market behavior on Polymarket.",
+      "mode": "view"
+    }
+  ],
+  "tools": [
+    {
+      "name": "search-markets",
+      "icon": "nansen.png",
+      "title": "Search Markets",
+      "description": "Search for Polymarket prediction markets by keyword. Returns market details including title, odds, volume, and market ID. Results are sorted by volume (most popular first)."
+    },
+    {
+      "name": "scan-insiders",
+      "icon": "nansen.png",
+      "title": "Scan Insiders",
+      "description": "Scan a Polymarket market for wallets with suspicious trading patterns. Returns scored wallets with flags like NEW_WALLET, EXTREME_ROI, SINGLE_MARKET. Use this after finding a market with search-markets."
+    },
+    {
+      "name": "cluster-wallet",
+      "icon": "nansen.png",
+      "title": "Cluster Wallet",
+      "description": "Find related wallets for a given wallet address or Polymarket username using Nansen's clustering capabilities. Reveals funding chains, shared signers, and CEX deposit patterns."
+    },
+    {
+      "name": "get-wallet-positions",
+      "icon": "nansen.png",
+      "title": "Get Wallet Positions",
+      "description": "Get a wallet's active and recent trading positions on Polymarket. Accepts a wallet address or Polymarket username. Shows markets traded, entry prices, current prices, and profit/loss."
+    },
+    {
+      "name": "get-wallet-labels",
+      "icon": "nansen.png",
+      "title": "Get Wallet Labels",
+      "description": "Get Nansen labels and categories for a wallet address or Polymarket username. Shows if the wallet is a known entity."
+    }
+  ],
+  "dependencies": {
+    "@raycast/api": "^1.93.0",
+    "@raycast/utils": "^1.17.0",
+    "execa": "^7.2.0",
+    "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "@raycast/eslint-config": "^1.0.11",
+    "@types/node": "22.13.4",
+    "@types/react": "19.0.8",
+    "eslint": "^8.57.0",
+    "prettier": "^3.4.2",
+    "typescript": "^5.7.3"
+  },
+  "scripts": {
+    "build": "ray build",
+    "dev": "ray develop",
+    "fix-lint": "ray lint --fix",
+    "lint": "ray lint",
+    "prepublishOnly": "echo 'Error: no publish' && exit 1",
+    "publish": "npx @raycast/api@latest publish"
+  }
+}
