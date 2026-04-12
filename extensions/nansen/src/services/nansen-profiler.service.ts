@@ -2,10 +2,10 @@ import {
   ICliClient,
   INansenProfilerService,
   HistoricalBalance,
-  NansenLabel,
   NansenRelatedWallet,
   NansenCounterparty,
 } from "../core/interfaces";
+import type { NansenLabel } from "../lib/types";
 import { delay } from "../lib/rate-limiter";
 
 const CALL_SPACING_MS = 1500;
