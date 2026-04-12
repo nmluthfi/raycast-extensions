@@ -59,7 +59,7 @@ export class PolymarketService implements IPolymarketService {
 
     const searchTerms = query
       .toLowerCase()
-      .split(/[\\s,]+/)
+      .split(/[\s,]+/)
       .filter((t) => t.length > 1);
 
     const scoredEvents = rawEvents.map((event) => {
